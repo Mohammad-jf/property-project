@@ -12,6 +12,7 @@ const InfoBoxes = () => {
             bgColor="bg-gray-100"
             linkText="  Browse Properties"
             buttonColor="bg-black"
+            href="/properties"
           />
 
           <InfoBox
@@ -20,6 +21,7 @@ const InfoBoxes = () => {
             bgColor="bg-blue-100"
             linkText="Add Property"
             buttonColor="bg-blue-500"
+            href="/properties/add"
           />
         </div>
       </div>
