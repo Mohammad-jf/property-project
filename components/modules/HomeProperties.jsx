@@ -1,8 +1,7 @@
-import properties from "@/properties.json";
 import PropertyCard from "./PropertyCard";
 import Link from "next/link";
 
-const HomeProperties = () => {
+const HomeProperties = ({ properties }) => {
   return (
     <>
       <section className="px-4 py-6">
@@ -14,8 +13,8 @@ const HomeProperties = () => {
             <p>No properties found</p>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {properties.slice(0, 3).map((property) => (
-                <PropertyCard property={property} key={property.id} />
+              {properties.map((property) => (
+                <PropertyCard property={property} key={property._id} />
               ))}
             </div>
           )}
