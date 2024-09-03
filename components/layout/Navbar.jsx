@@ -1,4 +1,5 @@
 "use client";
+import { useEffect } from "react";
 import profile from "../../assets/images/profile.png";
 import logo from "../../assets/images/logo-white.png";
 import Image from "next/image";
@@ -7,11 +8,13 @@ import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { signIn, signOut, useSession, getProviders } from "next-auth/react";
-import { useEffect } from "react";
 
 const Navbar = () => {
-  const { data: session } = useSession();
   const pathName = usePathname();
+  const { data: session } = useSession();
+  console.log(session);
+  const profileImage = session?.user?.image;
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
   const [providers, setProviders] = useState(null);
@@ -104,10 +107,17 @@ const Navbar = () => {
           {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
-                  <FaGoogle className="mr-2 text-white" />
-                  <span>Login or Register</span>
-                </button>
+                {providers &&
+                  Object.values(providers).map((provider) => (
+                    <button
+                      onClick={() => signIn(provider.id)}
+                      key={provider.id}
+                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
+                    >
+                      <FaGoogle className="mr-2 text-white" />
+                      <span>Login or Register</span>
+                    </button>
+                  ))}
               </div>
             </div>
           )}
@@ -118,9 +128,7 @@ const Navbar = () => {
               <Link href="/messages" className="relative group">
                 <button
                   type="button"
-                  className="relative rounded-full bg-gray-800 p-1
-                   text-gray-400 hover:text-white focus:outline-none focus:ring-2
-                    focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                  className="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
                   <span className="absolute -inset-1.5"></span>
                   <span className="sr-only">View notifications</span>
@@ -139,32 +147,27 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                <span className="absolute top-0 right-0 inline-flex items-center justify-center px-2 py-1 text-xs font-bold leading-none text-white transform translate-x-1/2 -translate-y-1/2 bg-red-600 rounded-full">
-                  2
-                  {/* <!-- Replace with the actual number of notifications --> */}
-                </span>
+                {/* <UnreadMessageCount /> */}
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
                 <div>
                   <button
-                    onClick={() =>
-                      setIsProfileMenuOpen((prev) => !isProfileMenuOpen)
-                    }
                     type="button"
-                    className="relative flex rounded-full
-                     bg-gray-800 text-sm focus:outline-none focus:ring-2
-                      focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
+                    className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                     id="user-menu-button"
                     aria-expanded="false"
                     aria-haspopup="true"
+                    onClick={() => setIsProfileMenuOpen((prev) => !prev)}
                   >
                     <span className="absolute -inset-1.5"></span>
                     <span className="sr-only">Open user menu</span>
                     <Image
                       className="h-8 w-8 rounded-full"
-                      src={profile}
-                      alt="profile"
+                      src={profileImage || profile}
+                      alt=""
+                      width={40}
+                      height={40}
                     />
                   </button>
                 </div>
