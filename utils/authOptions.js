@@ -1,6 +1,6 @@
 import GoogleProvider from "next-auth/providers/google";
 
-export default authOptions = {
+export const authOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -16,6 +16,7 @@ export default authOptions = {
     }),
   ],
 
+  secret: process.env.NEXT_AUTH_SECRET,
   callbacks: {
     // invoked on successful signin
     async signIn({ profile }) {
