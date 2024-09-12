@@ -12,7 +12,6 @@ import { signIn, signOut, useSession, getProviders } from "next-auth/react";
 const Navbar = () => {
   const pathName = usePathname();
   const { data: session } = useSession();
-  console.log(session);
   const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -24,7 +23,6 @@ const Navbar = () => {
       const res = await getProviders();
       setProviders(res);
     };
-
     setAuthProviders();
   }, []);
 
