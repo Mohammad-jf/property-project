@@ -7,7 +7,7 @@ import connectDB from "@/utils/connectDB";
 const HomePage = async () => {
   await connectDB();
   const properties = await Property.find({})
-    .sort({ createdAt: -1 })
+    .sort({ createdAt: -1 }) //newer first
     .limit(3)
     .lean();
 
