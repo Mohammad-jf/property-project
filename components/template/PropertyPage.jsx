@@ -2,6 +2,7 @@ import PropertyHeaderImage from "@/components/modules/PropertyHeaderImage";
 import PropertyDetails from "../modules/PropertyDetails";
 import Link from "next/link";
 import { FaArrowLeft } from "react-icons/fa";
+import PropertyImages from "../modules/PropertyImages";
 
 const PropertyPage = ({ property }) => {
   return (
@@ -26,6 +27,8 @@ const PropertyPage = ({ property }) => {
           </div>
         </div>
       </section>
+
+      <PropertyImages images={property.images} />
     </>
   );
 };
