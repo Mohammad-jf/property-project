@@ -4,6 +4,8 @@ import User from "@/models/User";
 
 export const authOptions = {
   session: { strategy: "jwt" },
+  secret: process.env.NEXT_AUTH_SECRET,
+
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -18,8 +20,6 @@ export const authOptions = {
       },
     }),
   ],
-
-  secret: process.env.NEXT_AUTH_SECRET,
 
   callbacks: {
     // Invoked on successful signin
