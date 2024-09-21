@@ -2,6 +2,8 @@ import Navbar from "@/components/layout/Navbar";
 import "../styles/globals.css";
 import Footer from "@/components/layout/Footer";
 import NextAuthProvider from "@/providers/NextAuthProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const metadata = {
   title: "Property Listing",
@@ -17,6 +19,7 @@ export default function RootLayout({ children }) {
           <Navbar />
           <main>{children}</main>
           <Footer />
+          <ToastContainer />
         </body>
       </html>
     </NextAuthProvider>
