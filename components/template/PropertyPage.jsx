@@ -28,9 +28,9 @@ const PropertyPage = ({ property }) => {
           <div className="grid grid-cols-1 md:grid-cols-70/30 w-full gap-6">
             <PropertyDetails property={property} />
             <aside className="space-y-4">
-              <BookmarkButton property={property} />
-              <ShareButtons property={property} />
-              <PropertyContactForm property={property} />
+              <BookmarkButton property={JSON.parse(JSON.stringify(property))} />
+              <ShareButtons property={JSON.parse(JSON.stringify(property))} />
+              <PropertyContactForm property={JSON.parse(JSON.stringify(property))} />
             </aside>
           </div>
         </div>

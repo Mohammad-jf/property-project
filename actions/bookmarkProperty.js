@@ -22,11 +22,11 @@ async function bookmarkProperty(propertyId) {
   if (isBookMarked) {
     // if already bookmarked then remove
     user.bookmarks.pull(propertyId);
-    message = "BookMark Removed";
+    message = "Bookmark Removed";
     isBookMarked = false;
   } else {
     user.bookmarks.push(propertyId);
-    message = "BookMark Added";
+    message = "Bookmark Added";
     isBookMarked = true;
   }
 
