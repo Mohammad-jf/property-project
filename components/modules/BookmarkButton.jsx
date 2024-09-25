@@ -16,24 +16,28 @@ const BookmarkButton = ({ property }) => {
 
   useEffect(() => {
     if (!userId) {
-      setLoading(false);
       return;
     }
+
     setLoading(true);
     checkBookmarkStatus(property._id).then((res) => {
-      if (res.error) toast.error(res.error);
+      if (res.error) {
+        toast.error(res.error);
+        setLoading(false);
+      }
+
       if (res) setIsBookmarked(res);
       setLoading(false);
     });
   }, [property._id, userId, checkBookmarkStatus]);
 
   const handleClick = async () => {
-    setLoading(true);
     if (!userId) {
       toast.error("you need to be signed in");
-      setLoading(false);
       return;
     }
+
+    setLoading(true);
     bookmarkProperty(property._id).then((res) => {
       if (res.error) {
         toast.error(res.error);

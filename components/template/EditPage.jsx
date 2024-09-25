@@ -1,11 +1,6 @@
-import Property from "@/models/Property";
 import PropertyEditForm from "../modules/PropertyEditForm";
-import connectDB from "@/utils/connectDB";
 
-const EditPage = async ({ id }) => {
-  await connectDB();
-  const propertyInfo = await Property.findById({ _id: id }).lean();
-
+const EditPage = ({ propertyInfo }) => {
   if (!propertyInfo) {
     return (
       <h1 className="text-center text-2xl font-bold mt-10">

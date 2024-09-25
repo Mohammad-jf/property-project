@@ -1,26 +1,8 @@
-import Link from "next/link";
 import Image from "next/image";
-import getSession from "@/utils/getSession";
-import { redirect } from "next/navigation";
-import Property from "@/models/Property";
-import { revalidatePath } from "next/cache";
 import ProfileProperty from "../modules/ProfileProperty";
 import profileDefault from "../../assets/images/profile.png";
-import connectDB from "@/utils/connectDB";
 
-const ProfilePage = async () => {
-  await connectDB();
-
-  const session = await getSession();
-
-  if (!session || !session.user) {
-    redirect("/");
-  }
-
-  const properties = await Property.find({ owner: session?.user?.id }).lean();
-
-
-
+const ProfilePage = ({ session, properties }) => {
   return (
     <section className="bg-blue-50">
       <div className="container m-auto py-24">
