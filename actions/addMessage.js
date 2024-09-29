@@ -1,22 +1,22 @@
+"use server";
 import Message from "@/models/Message";
 import connectDB from "@/utils/connectDB";
-import { getSession } from "next-auth/react";
-import { redirect } from "next/navigation";
+import getSession from "@/utils/getSession";
 
-async function addMessage(formData) {
+async function addMessage(previousState, formData) {
   await connectDB();
-  const { userId } = await getSession();
+  const session = await getSession();
 
-  if (!userId) {
+  if (!session.user.id) {
     throw new Error("user id is required");
   }
 
-  if (userId === formData.get("recipient")) {
+  if (session.user.id === formData.get("recipient")) {
     return { error: "you can not send a message to your self" };
   }
 
-  const newMessage = new Message({
-    sender: userId,
+  const newMessage = await Message.create({
+    sender: session.user.id,
     recipient: formData.get("recipient"),
     property: formData.get("property"),
     name: formData.get("name"),
@@ -25,8 +25,7 @@ async function addMessage(formData) {
     body: formData.get("body"),
   });
 
-  await newMessage.save();
-  return { submited: true };
+  return { submitted: true };
 }
 
 export default addMessage;
