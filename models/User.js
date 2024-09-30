@@ -2,20 +2,20 @@ import mongoose, { models, Schema } from "mongoose";
 
 const userSchema = mongoose.Schema(
   {
+    name: {
+      type: String,
+      required: [true, "name is required"],
+    },
+
     email: {
       type: String,
       required: [true, "email is required"],
       unique: [true, "Email already exist"],
     },
 
-    username: {
+    password: {
       type: String,
-      required: [true, "username is required"],
-      unique: [true, "username already exist"],
-    },
-
-    image: {
-      type: "String",
+      required: true,
     },
 
     bookmarks: [{ type: Schema.Types.ObjectId, ref: "Property" }],

@@ -11,7 +11,7 @@ async function addMessage(previousState, formData) {
     throw new Error("user id is required");
   }
 
-  if (session.user.id === formData.get("recipient")) {
+  if (session?.user?.id === formData.get("recipient")) {
     return { error: "you can not send a message to your self" };
   }
 

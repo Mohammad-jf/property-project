@@ -1,51 +1,46 @@
-import GoogleProvider from "next-auth/providers/google";
 import connectDB from "./connectDB";
+import CredentialsProvider from "next-auth/providers/credentials";
+import { verifyPassword } from "./auth";
 import User from "@/models/User";
 
 export const authOptions = {
   session: { strategy: "jwt" },
   secret: process.env.NEXT_AUTH_SECRET,
-
   providers: [
-    GoogleProvider({
-      clientId: process.env.GOOGLE_CLIENT_ID,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      // for choosing google account manualy
-      authorization: {
-        params: {
-          prompt: "consent",
-          access_type: "offline",
-          response_type: "code",
-        },
+    CredentialsProvider({
+      async authorize(credentials) {
+        const { email, password } = credentials;
+        try {
+          await connectDB();
+        } catch (error) {
+          console.log(error);
+          throw new Error("server could not handle request");
+        }
+
+        if (!email || !password) {
+          throw new Error("invalid user credentials");
+        }
+
+        const user = await User.findOne({ email });
+        if (!user) {
+          throw new Error("cant find user!");
+        }
+
+        const validPassword = await verifyPassword(password, user.password);
+
+        if (!validPassword) {
+          throw new Error("email or password is wrong");
+        }
+
+        return { email };
       },
     }),
   ],
 
   callbacks: {
-    // Invoked on successful signin
-    async signIn({ profile }) {
-      // 1. Connect to database
-      await connectDB();
-      // 2. Check if user exists
-      const userExists = await User.findOne({ email: profile.email });
-      // 3. If not, then add user to database
-      if (!userExists) {
-        // Truncate user name if too long
-        const username = profile.name.slice(0, 20);
-
-        await User.create({
-          email: profile.email,
-          username,
-          image: profile.picture,
-        });
-      }
-      // 4. Return true to allow sign in
-      return true;
-    },
-    // Modifies the session object
     async session({ session }) {
       // 1. Get user from database
-      const user = await User.findOne({ email: session.user.email });
+      const user = await User.findOne({ email: session?.user?.email });
       // 2. Assign the user id to the session
       session.user.id = user._id.toString();
       // 3. return session

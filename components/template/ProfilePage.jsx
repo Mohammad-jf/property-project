@@ -2,7 +2,7 @@ import Image from "next/image";
 import ProfileProperty from "../modules/ProfileProperty";
 import profileDefault from "../../assets/images/profile.png";
 
-const ProfilePage = ({ session, properties }) => {
+const ProfilePage = ({ user, properties }) => {
   return (
     <section className="bg-blue-50">
       <div className="container m-auto py-24">
@@ -13,7 +13,7 @@ const ProfilePage = ({ session, properties }) => {
               <div className="mb-4">
                 <Image
                   className="h-32 w-32 md:h-48 md:w-48 rounded-full mx-auto md:mx-0"
-                  src={session?.user?.image || profileDefault}
+                  src={profileDefault}
                   alt="User"
                   width={200}
                   height={200}
@@ -21,12 +21,10 @@ const ProfilePage = ({ session, properties }) => {
               </div>
 
               <h2 className="text-2xl mb-4">
-                <span className="font-bold block">Name: </span>{" "}
-                {session?.user.name}
+                <span className="font-bold block">Name: </span> {user.name}
               </h2>
               <h2 className="text-2xl">
-                <span className="font-bold block">Email: </span>{" "}
-                {session?.user.email}
+                <span className="font-bold block">Email: </span> {user.email}
               </h2>
             </div>
 

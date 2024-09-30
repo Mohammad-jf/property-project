@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 
 const Add = async () => {
   const session = await getSession();
-  if (!session || !session.user) {
+  if (!session || !session?.user) {
     redirect("/");
   }
   return <AddPage />;

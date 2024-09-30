@@ -1,5 +1,4 @@
 "use client";
-import { useEffect } from "react";
 import profile from "../../assets/images/profile.png";
 import logo from "../../assets/images/logo-white.png";
 import Image from "next/image";
@@ -7,24 +6,14 @@ import Link from "next/link";
 import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { signIn, signOut, useSession, getProviders } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 
 const Navbar = () => {
   const pathName = usePathname();
   const { data: session } = useSession();
-  const profileImage = session?.user?.image;
 
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isProfileMenuOpen, setIsProfileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(null);
-
-  useEffect(() => {
-    const setAuthProviders = async () => {
-      const res = await getProviders();
-      setProviders(res);
-    };
-    setAuthProviders();
-  }, []);
 
   return (
     <nav className="bg-blue-700 border-b border-blue-500">
@@ -105,17 +94,12 @@ const Navbar = () => {
           {!session && (
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
-                {providers &&
-                  Object.values(providers).map((provider) => (
-                    <button
-                      onClick={() => signIn(provider.id)}
-                      key={provider.id}
-                      className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2"
-                    >
-                      <FaGoogle className="mr-2 text-white" />
-                      <span>Login or Register</span>
-                    </button>
-                  ))}
+                <Link href="/signup">
+                  <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
+                    <FaGoogle className="mr-2 text-white" />
+                    <span>Login or Register</span>
+                  </button>
+                </Link>
               </div>
             </div>
           )}
@@ -162,7 +146,7 @@ const Navbar = () => {
                     <span className="sr-only">Open user menu</span>
                     <Image
                       className="h-8 w-8 rounded-full"
-                      src={profileImage || profile}
+                      src={profile}
                       alt=""
                       width={40}
                       height={40}
@@ -199,7 +183,6 @@ const Navbar = () => {
                       tabIndex="-1"
                       id="user-menu-item-2"
                       onClick={() => setIsProfileMenuOpen(false)}
-
                     >
                       Saved Properties
                     </Link>
