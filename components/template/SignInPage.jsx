@@ -1,5 +1,6 @@
 "use client";
 import { signIn, useSession } from "next-auth/react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
@@ -75,6 +76,13 @@ const SignInPage = () => {
           Login
         </button>
       </form>
+      <p className="text-gray-500 text-base">
+        Don't you Have an Account ?
+        <Link className="text-blue-500 mr-2" href="/signup">
+          {" "}
+          Register
+        </Link>
+      </p>
     </div>
   );
 };

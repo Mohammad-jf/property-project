@@ -67,9 +67,9 @@ const SignUpPage = () => {
           Sign Up
         </button>
       </form>
-      <p className="text-gray-500 text-xl">
+      <p className="text-gray-500 text-base">
         Do you Have an Account ?
-        <Link className="text-blue-500 mr-3" href="/signin">
+        <Link className="text-blue-500 mr-2" href="/signin">
           {" "}
           Login
         </Link>
