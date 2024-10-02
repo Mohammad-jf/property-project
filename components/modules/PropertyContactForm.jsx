@@ -4,7 +4,7 @@ import { useFormState } from "react-dom";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import addMessage from "@/actions/addMessage";
-import SubmitMessageButton from "./SubmitMessageButton";
+import SubmitButton from "./SubmitButton";
 
 const PropertyContactForm = ({ property }) => {
   const { data: session } = useSession();
@@ -98,7 +98,7 @@ const PropertyContactForm = ({ property }) => {
             ></textarea>
           </div>
           <div>
-            <SubmitMessageButton />
+            <SubmitButton text="Send" />
           </div>
         </form>
       </div>

@@ -4,12 +4,14 @@ import signUp from "../../actions/signUp";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
+import { useFormStatus } from "react-dom";
+import SubmitButton from "../modules/SubmitButton";
 
 const SignUpPage = () => {
   const router = useRouter();
   const { data: session } = useSession();
   if (session || session?.user) router.replace("/signin");
-
+  const status = useFormStatus();
   const signupAction = async (formData) => {
     signUp(formData).then((res) => {
       if (res?.error) toast.error(res?.error);
@@ -60,12 +62,7 @@ const SignUpPage = () => {
           placeholder="repeat password"
           className="mb-10 focus:outline-none w-[250px] border border-blue-500 text-gray-500 rounded-md p-3 text-base h-10"
         />
-        <button
-          className=" border-none bg-blue-500 text-white text-xl font-normal rounded-md transition-all ease-in cursor-pointer py-2 hover:transform hover:scale-105"
-          type="submit"
-        >
-          Sign Up
-        </button>
+        <SubmitButton text="Sign up" />
       </form>
       <p className="text-gray-500 text-base">
         Do you Have an Account ?

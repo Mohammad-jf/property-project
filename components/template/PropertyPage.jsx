@@ -30,7 +30,9 @@ const PropertyPage = ({ property }) => {
             <aside className="space-y-4">
               <BookmarkButton property={JSON.parse(JSON.stringify(property))} />
               <ShareButtons property={JSON.parse(JSON.stringify(property))} />
-              <PropertyContactForm property={JSON.parse(JSON.stringify(property))} />
+              <PropertyContactForm
+                property={JSON.parse(JSON.stringify(property))}
+              />
             </aside>
           </div>
         </div>

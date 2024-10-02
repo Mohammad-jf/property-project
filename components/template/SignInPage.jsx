@@ -4,10 +4,13 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-toastify";
+import { ThreeDots } from "react-loader-spinner";
 
 const SignInPage = () => {
   const router = useRouter();
   const { data } = useSession();
+  const [isLoading, setIsLoading] = useState(false);
+
   if (data) {
     router.replace("/");
   }
@@ -23,11 +26,14 @@ const SignInPage = () => {
       toast.error("invalid credentials");
       return;
     }
+    setIsLoading(true);
     const res = await signIn("credentials", { ...formData, redirect: false });
     if (!res.error) {
       router.replace("/");
+      setIsLoading(false);
     } else {
       toast.error(res.error);
+      setIsLoading(false);
     }
 
     setFormData({
@@ -51,7 +57,8 @@ const SignInPage = () => {
             setFormData({ ...formData, [e.target.name]: e.target.value })
           }
           placeholder="email"
-          className="mb-10 focus:outline-none w-[250px] border border-blue-500 text-gray-500 rounded-md p-3 text-base h-10"
+          className="mb-10 focus:outline-none w-[250px] border
+           border-blue-500 text-gray-500 rounded-md p-3 text-base h-10"
         />
 
         <label className="text-blue-500 mb-3 font-normal" htmlFor="password">
@@ -65,16 +72,30 @@ const SignInPage = () => {
           }
           name="password"
           placeholder="password"
-          className="mb-10 focus:outline-none w-[250px] border border-blue-500 text-gray-500 rounded-md p-3 text-base h-10"
+          className="mb-10 focus:outline-none w-[250px] border
+           border-blue-500 text-gray-500 rounded-md p-3 text-base h-10"
         />
-
-        <button
-          className=" border-none bg-blue-500 text-white text-xl font-normal rounded-md transition-all ease-in cursor-pointer py-2 hover:transform hover:scale-105"
-          type="submit"
-          onClick={submitHandler}
-        >
-          Login
-        </button>
+        <div className="flex justify-center">
+          {isLoading ? (
+            <ThreeDots
+              color="#304ffe"
+              height={45}
+              ariaLabel="three-dotss-loading"
+              visible={true}
+              wrapperStyle={{ margin: "auto" }}
+            />
+          ) : (
+            <button
+              className="border-none w-full bg-blue-500 text-white
+               text-xl font-normal rounded-lg transition-all ease-in 
+               cursor-pointer py-2 hover:transform hover:scale-105"
+              type="submit"
+              onClick={submitHandler}
+            >
+              Login
+            </button>
+          )}
+        </div>
       </form>
       <p className="text-gray-500 text-base">
         Don't you Have an Account ?
