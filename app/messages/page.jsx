@@ -29,7 +29,7 @@ const Messages = async () => {
     .populate("property", "name")
     .lean();
 
-  const messages = [...readMessages, ...unreadMessages].map((messageDoc) => {
+  const messages = [...unreadMessages, ...readMessages].map((messageDoc) => {
     const message = JSON.parse(JSON.stringify(messageDoc));
     message.sender = JSON.parse(JSON.stringify(messageDoc.sender));
     message.property = JSON.parse(JSON.stringify(messageDoc.property));

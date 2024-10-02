@@ -7,6 +7,7 @@ import { FaGoogle } from "react-icons/fa";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { signOut, useSession } from "next-auth/react";
+import UnReadMessageCount from "../modules/UnReadMessageCount";
 
 const Navbar = () => {
   const pathName = usePathname();
@@ -129,7 +130,7 @@ const Navbar = () => {
                     />
                   </svg>
                 </button>
-                {/* <UnreadMessageCount /> */}
+                <UnReadMessageCount />
               </Link>
               {/* <!-- Profile dropdown button --> */}
               <div className="relative ml-3">
