@@ -1,3 +1,5 @@
+import MessageCard from "../modules/MessageCard";
+
 const MessagesPage = ({ messages }) => {
   return (
     <section className="bg-blue-50">
@@ -10,7 +12,7 @@ const MessagesPage = ({ messages }) => {
               <p>you have no messages</p>
             ) : (
               messages.map((message) => (
-                <h3 key={message._id}>{message.name}</h3>
+                <MessageCard key={message._id} message={message} />
               ))
             )}
           </div>
