@@ -8,7 +8,6 @@ import { useGlobalContext } from "@/context/GlobalContext";
 
 const MessageCard = ({ message }) => {
   const [isRead, setIsRead] = useState(message.read);
-  const [isDeleted, setDeleted] = useState(false);
   const { setUnreadCount } = useGlobalContext();
 
   const handleReadClick = async () => {
@@ -31,7 +30,6 @@ const MessageCard = ({ message }) => {
     if (res?.error) {
       toast.error(res?.error);
     } else {
-      setDeleted(true);
       setUnreadCount((prev) => (isRead ? prev : prev - 1));
       toast.success("Message Deleted");
     }

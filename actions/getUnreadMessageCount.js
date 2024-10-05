@@ -18,7 +18,6 @@ async function getUnreadMessageCount() {
     read: false,
   });
 
-  console.log(count);
   return { count };
 }
 
