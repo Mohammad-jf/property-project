@@ -22,11 +22,11 @@ const ProfileProperty = ({ property }) => {
     <div className="mb-10">
       <Link href={`/properties/${property._id}`}>
         <Image
-          className="h-32 w-full rounded-md object-cover"
+          className="h-60 w-full rounded-md object-cover"
           src={property.images[0]}
           alt={property.name}
           width={1000}
-          height={200}
+          height={300}
         />
       </Link>
       <div className="mt-2">

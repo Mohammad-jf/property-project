@@ -65,7 +65,7 @@ const Navbar = () => {
                 <Link
                   href="/"
                   className={`${
-                    pathName == "/" ? "bg-black" : ""
+                    pathName == "/" ? "bg-blue-900" : ""
                   } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Home
@@ -73,7 +73,7 @@ const Navbar = () => {
                 <Link
                   href="/properties"
                   className={`${
-                    pathName == "/properties" ? "bg-black" : ""
+                    pathName == "/properties" ? "bg-blue-900" : ""
                   } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Properties
@@ -82,7 +82,7 @@ const Navbar = () => {
                 <Link
                   href="/properties/add"
                   className={`${
-                    pathName == "/properties/add" ? "bg-black" : ""
+                    pathName == "/properties/add" ? "bg-blue-900" : ""
                   } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Add Property
@@ -160,7 +160,7 @@ const Navbar = () => {
                   <div
                     id="user-menu"
                     className="absolute right-0 z-10 mt-2 w-48 origin-top-right
-                  rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 
+                  rounded-md bg-white py-1 shadow-lg ring-1 ribg-blue-900 ring-opacity-5 
                   focus:outline-none"
                     role="menu"
                     aria-orientation="vertical"
@@ -210,20 +210,22 @@ const Navbar = () => {
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       {isMobileMenuOpen && (
         <div id="mobile-menu">
-          <div className={`space-y-1 px-2 pb-3 pt-2 md:hidden`}>
+          <div
+            className={`flex flex-col justify-center items-center space-y-1 px-2 pb-3 pt-2  md:hidden`}
+          >
             <Link
               href="/"
               className={`${
-                pathName == "/" ? "bg-black" : ""
-              } text-white block rounded-md px-3 py-2 text-base font-medium`}
+                pathName == "/" ? "bg-blue-900" : ""
+              } text-white block rounded-md px-6 py-2 text-base font-medium`}
             >
               Home
             </Link>
             <Link
               href="/properties"
               className={`${
-                pathName == "/properties" ? "bg-black" : ""
-              } text-white block rounded-md px-3 py-2 text-base font-medium`}
+                pathName == "/properties" ? "bg-blue-900" : ""
+              } text-white block rounded-md px-6 py-2 text-base font-medium`}
             >
               Properties
             </Link>
@@ -231,8 +233,8 @@ const Navbar = () => {
               <Link
                 href="/properties/add"
                 className={`${
-                  pathName == "/properties/add" ? "bg-black" : ""
-                } text-white block rounded-md px-3 py-2 text-base font-medium`}
+                  pathName == "/properties/add" ? "bg-blue-900" : ""
+                } text-white block rounded-md px-6 py-2 text-base font-medium`}
               >
                 Add Property
               </Link>
@@ -241,9 +243,8 @@ const Navbar = () => {
               <Link href="/signin">
                 <button
                   className="flex items-center text-white
-                bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-5"
+                bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
                 >
-                  <FaGoogle className="mr-2 text-white" />
                   <span>Login or Register</span>
                 </button>
               </Link>
