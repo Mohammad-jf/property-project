@@ -210,7 +210,7 @@ const Navbar = () => {
       {/* <!-- Mobile menu, show/hide based on menu state. --> */}
       {isMobileMenuOpen && (
         <div id="mobile-menu">
-          <div className={`space-y-1 px-2 pb-3 pt-2`}>
+          <div className={`space-y-1 px-2 pb-3 pt-2 md:hidden`}>
             <Link
               href="/"
               className={`${
