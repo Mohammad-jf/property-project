@@ -26,8 +26,8 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen((prev) => !prev)}
               type="button"
               id="mobile-dropdown-button"
-              className="relative inline-flex items-center justify-center rounded-md p-2
-                 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+              className="relative inline-flex transition-all ease-in-out hover:transform hover:scale-105 items-center justify-center rounded-md p-2
+                 text-gray-400  hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
               aria-controls="mobile-menu"
               aria-expanded="false"
             >
@@ -66,7 +66,7 @@ const Navbar = () => {
                   href="/"
                   className={`${
                     pathName == "/" ? "bg-blue-900" : ""
-                  } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                  } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Home
                 </Link>
@@ -74,7 +74,7 @@ const Navbar = () => {
                   href="/properties"
                   className={`${
                     pathName == "/properties" ? "bg-blue-900" : ""
-                  } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                  } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Properties
                 </Link>
@@ -83,7 +83,7 @@ const Navbar = () => {
                   href="/properties/add"
                   className={`${
                     pathName == "/properties/add" ? "bg-blue-900" : ""
-                  } text-white hover:bg-gray-900 hover:text-white rounded-md px-3 py-2`}
+                  } text-white hover:bg-blue-900 hover:text-white rounded-md px-3 py-2`}
                 >
                   Add Property
                 </Link>
@@ -96,7 +96,7 @@ const Navbar = () => {
             <div className="hidden md:block md:ml-6">
               <div className="flex items-center">
                 <Link href="/signup">
-                  <button className="flex items-center text-white bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2">
+                  <button className="flex items-center text-white bg-gray-700 hover:bg-blue-900 hover:text-white rounded-md px-3 py-2">
                     <FaGoogle className="mr-2 text-white" />
                     <span>Login or Register</span>
                   </button>
@@ -133,7 +133,7 @@ const Navbar = () => {
                 <UnReadMessageCount />
               </Link>
               {/* <!-- Profile dropdown button --> */}
-              <div className="relative ml-3">
+              <div className="relative ml-3 ">
                 <div>
                   <button
                     type="button"
@@ -243,7 +243,7 @@ const Navbar = () => {
               <Link href="/signin">
                 <button
                   className="flex items-center text-white
-                bg-gray-700 hover:bg-gray-900 hover:text-white rounded-md px-3 py-2 my-3"
+                bg-gray-700 transition-all ease-in-out hover:transform hover:scale-105 hover:text-white rounded-md px-3 py-2 my-3"
                 >
                   <span>Login or Register</span>
                 </button>

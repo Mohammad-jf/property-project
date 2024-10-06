@@ -1,5 +1,6 @@
 "use client";
 import updateProperty from "../../actions/updateProperty";
+import SubmitButton from "./SubmitButton";
 
 const PropertyEditForm = ({ propertyInfo }) => {
   return (
@@ -434,12 +435,13 @@ const PropertyEditForm = ({ propertyInfo }) => {
       </div>
 
       <div>
-        <button
+        {/* <button
           className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded-full w-full focus:outline-none focus:shadow-outline"
           type="submit"
         >
           Edit Property
-        </button>
+        </button> */}
+        <SubmitButton text="Edit property" />
       </div>
     </form>
   );

@@ -2,6 +2,7 @@ import EditPage from "@/components/template/EditPage";
 import connectDB from "@/utils/connectDB";
 import getSession from "@/utils/getSession";
 import { redirect } from "next/navigation";
+import Property from "@/models/Property";
 const Edit = async ({ params }) => {
   await connectDB();
   const session = await getSession();
