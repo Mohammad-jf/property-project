@@ -7,7 +7,7 @@ export const maxDuration = 30;
 const Add = async () => {
   await connectDB();
   const session = await getSession();
-  if (!session) {
+  if (!session || !session?.user) {
     redirect("/signin");
   }
   return <AddPage />;
