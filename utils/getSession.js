@@ -3,7 +3,7 @@ import { authOptions } from "./authOptions";
 
 async function getSession() {
   const session = await getServerSession(authOptions);
-  if (!session || !session.user) {
+  if (!session || !session?.user) {
     return null;
   }
   return {
